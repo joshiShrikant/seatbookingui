@@ -1,0 +1,60 @@
+<div class="mt-4">
+    <h3 class="mb-3">Seat Management</h3>
+
+    <!-- Form -->
+    <form [formGroup]="seatForm" (ngSubmit)="submitForm()">
+        <div class="row">
+
+            <div class="col-md-3 mb-2">
+                <label>Seat Number</label>
+                <input type="text" class="form-control" formControlName="seatNumber" />
+            </div>
+
+            <div class="col-md-3 mb-2">
+                <label>Floor Name</label>
+                <input type="text" class="form-control" formControlName="floorName" />
+            </div>
+
+            <div class="col-md-3 mb-2">
+                <label>Status</label>
+                <input type="text" class="form-control" formControlName="status" />
+            </div>
+
+        </div>
+
+        <button class="btn btn-primary mt-2" type="submit">
+            {{ isEditMode ? 'Update Seat' : 'Add Seat' }}
+        </button>
+    </form>
+
+    <hr />
+
+    <!-- Table -->
+    <table class="table table-bordered mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Seat Number</th>
+                <th>Floor Name</th>
+                <th>Status</th>
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let emp of seats">
+                <td>{{ emp.seatNumber }}</td>
+                <td>{{ emp.floorName }}</td>
+                <td>{{ emp.status }}</td>
+                <td>
+                    <button class="btn btn-sm btn-warning me-2" (click)="editSeat(emp)">
+                        Edit
+                    </button>
+                    <button class="btn btn-sm btn-danger" (click)="deleteSeat(emp.id!)">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

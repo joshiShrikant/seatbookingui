@@ -1,0 +1,67 @@
+<div class="mt-4">
+    <h3 class="mb-3">Employee Management</h3>
+
+    <!-- Form -->
+    <form [formGroup]="employeeForm" (ngSubmit)="submitForm()">
+        <div class="row">
+
+            <div class="col-md-3 mb-2">
+                <label>First Name</label>
+                <input type="text" class="form-control" formControlName="FirstName" />
+            </div>
+
+            <div class="col-md-3 mb-2">
+                <label>Last Name</label>
+                <input type="text" class="form-control" formControlName="LastName" />
+            </div>
+
+            <div class="col-md-3 mb-2">
+                <label>user Name</label>
+                <input type="text" class="form-control" formControlName="userName" />
+            </div>
+
+            <div class="col-md-3 mb-2">
+                <label>Email Id</label>
+                <input type="email" class="form-control" formControlName="email" />
+            </div>
+
+        </div>
+
+        <button class="btn btn-primary mt-2" type="submit">
+            {{ isEditMode ? 'Update Employee' : 'Add Employee' }}
+        </button>
+    </form>
+
+    <hr />
+
+    <!-- Table -->
+    <table class="table table-bordered mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>user Name</th>
+                <th>email Id</th>
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let emp of employees">
+                <td>{{ emp.FirstName }}</td>
+                <td>{{ emp.LastName }}</td>
+                <td>{{ emp.userName }}</td>
+                <td>{{ emp.email }}</td>
+                <td>
+                    <button class="btn btn-sm btn-warning me-2" (click)="editEmployee(emp)">
+                        Edit
+                    </button>
+                    <button class="btn btn-sm btn-danger" (click)="deleteEmployee(emp.id!)">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

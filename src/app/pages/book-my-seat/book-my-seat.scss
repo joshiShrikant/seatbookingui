@@ -1,0 +1,19 @@
+.seat-box {
+  border-radius: 10px;
+  padding: 15px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.free-seat {
+  background-color: #28a745; /* green */
+}
+
+.booked-seat {
+  background-color: #dc3545; /* red */
+}
+
+.my-seat {
+  background-color: #ffc107; /* yellow */
+  color: #000;
+}

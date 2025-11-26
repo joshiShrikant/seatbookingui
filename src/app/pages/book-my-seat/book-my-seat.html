@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <h3 class="mb-3">Book My Seat</h3>
+
+  <div class="row g-3">
+    <div class="col-3" *ngFor="let seat of seats">
+      <div class="p-3 text-center seat-box"
+           [ngClass]="{
+             'free-seat': !seat.bookedBy,
+             'my-seat': isMySeat(seat),
+             'booked-seat': seat.bookedBy && !isMySeat(seat)
+           }">
+
+        <h5>Seat {{ seat.seatNumber }}</h5>
+
+        <!-- My Seat -->
+        <button *ngIf="isMySeat(seat)"
+                class="btn btn-warning btn-sm mt-2"
+                (click)="releaseSeat(seat)">
+          Release Seat
+        </button>
+
+        <!-- Free Seat -->
+        <button *ngIf="!seat.bookedBy"
+                class="btn btn-success btn-sm mt-2"
+                (click)="bookSeat(seat)">
+          Book Seat
+        </button>
+
+        <!-- Other User Booked -->
+        <p *ngIf="seat.bookedBy && !isMySeat(seat)"
+           class="text-danger mt-2">
+          Booked by User {{ seat.bookedBy }}
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>

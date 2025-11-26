@@ -1,0 +1,43 @@
+<div class="container mt-4">
+  <h3 class="mb-3">Admin – Manage Seats</h3>
+
+  <label>Select Employee:</label>
+  <select class="form-select w-25 mb-3"
+          [(ngModel)]="selectedEmployee">
+    <option value="0">-- Select Employee --</option>
+    <option *ngFor="let u of employees" [value]="u.id">
+      {{ u.userName }}
+    </option>
+  </select>
+
+  <div class="row g-3">
+    <div class="col-3" *ngFor="let seat of seats">
+      <div class="seat-box p-3 text-center"
+           [ngClass]="{
+             'free-seat': !seat.bookedBy,
+             'booked-seat': seat.bookedBy
+           }">
+
+        <h5>Seat {{ seat.seatNumber }}</h5>
+
+        <p *ngIf="seat.bookedBy">
+          Booked by: <b>{{ seat.bookedBy }}</b>
+        </p>
+
+        <!-- Admin Actions -->
+        <button *ngIf="!seat.bookedBy"
+                class="btn btn-success btn-sm"
+                (click)="bookForUser(seat)">
+          Book for User
+        </button>
+
+        <button *ngIf="seat.bookedBy"
+                class="btn btn-danger btn-sm"
+                (click)="release(seat)">
+          Free Seat
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>
